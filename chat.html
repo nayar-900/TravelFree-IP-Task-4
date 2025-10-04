@@ -1,0 +1,133 @@
+
+<!doctype html>
+<html lang="en" x-data="chatPage()">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TravelFree — Chat</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --brand-primary: #9112BC;
+      --brand-soft:    #AE75DA;
+      --brand-cta:     #E9E294;
+      --page-bg:       #FFFCB8;
+      --text-dark:     #111827;
+    }
+    .bubble-traveler { background: var(--brand-soft); color: white; }
+    .bubble-host { background: var(--brand-cta); color: var(--text-dark); }
+    .chat-scroll { height: calc(100vh - 10rem); overflow-y: auto; }
+  </style>
+</head>
+<body class="antialiased bg-[#FFFCB8] text-[#111827] font-inter">
+
+<!-- HEADER -->
+<header class="bg-white border-b">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center"
+           style="background:linear-gradient(135deg,#9112BC,#AE75DA); color:white; font-weight:700;">
+        TF
+      </div>
+      <span class="font-poppins text-lg text-[#9112BC]">TravelFree</span>
+    </div>
+    <!-- Nav (your 6 pages only) -->
+    <nav class="space-x-4 text-sm">
+      <a href="single-listing.html" class="hover:underline">Accommodation</a>
+      <a href="requests.html" class="hover:underline">Requests</a>
+      <a href="chat.html" class="hover:underline">Chat</a>
+      <a href="reviews.html" class="hover:underline">Reviews</a>
+      <a href="community.html" class="hover:underline">Community</a>
+      <a href="settings.html" class="hover:underline">Settings</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- Chat body -->
+  <main class="max-w-4xl mx-auto px-4 py-4 flex flex-col h-[calc(100vh-5rem)]">
+    <div class="flex-1 chat-scroll space-y-4 pr-2" x-ref="chatContainer">
+      <!-- Messages -->
+      <template x-for="msg in messages" :key="msg.id">
+        <div :class="msg.from==='traveler' ? 'flex justify-end' : 'flex justify-start'">
+          <div :class="msg.from==='traveler' ? 'bubble-traveler rounded-lg p-3 max-w-xs animate__animated animate__fadeInRight' : 'bubble-host rounded-lg p-3 max-w-xs animate__animated animate__fadeInLeft'">
+            <p class="text-sm" x-text="msg.text"></p>
+            <p class="text-[10px] mt-1 text-gray-700" x-text="msg.time"></p>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- Composer -->
+    <form @submit.prevent="sendMessage()" class="mt-4 flex items-center gap-2">
+      <input type="text" x-model="newMessage" placeholder="Type a message..."
+        class="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none"/>
+      <label class="cursor-pointer">
+        <i class="fa fa-image text-[#9112BC] text-lg"></i>
+        <input type="file" class="hidden" @change="attachImage($event)"/>
+      </label>
+      <button class="px-4 py-2 rounded-full bg-[#9112BC] text-white text-sm">
+        <i class="fa fa-paper-plane"></i>
+      </button>
+    </form>
+
+    <!-- FOOTER -->
+<footer class="bg-white border-t mt-12">
+  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600">
+    <p>&copy; 2025 TravelFree. All rights reserved.</p>
+    <div class="space-x-4 mt-2 md:mt-0">
+      <a href="https://facebook.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:info@travelfree.com" class="hover:text-[#9112BC]"><i class="fa fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </main>
+
+  <!-- Alpine.js logic -->
+  <script>
+    function chatPage(){
+      return {
+        messages: [
+          {id:1, from:'host', text:'Hello! Happy to host you ', time:'10:00 am'},
+          {id:2, from:'traveler', text:'Thanks! I will arrive tomorrow evening.', time:'10:02 am'}
+        ],
+        newMessage: '',
+        sendMessage(){
+          if(this.newMessage.trim().length===0) return;
+          this.messages.push({id:Date.now(), from:'traveler', text:this.newMessage, time:new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})});
+          this.newMessage='';
+          this.$nextTick(()=> this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight);
+          // TODO: replace with POST /chats/:id/messages
+        },
+        attachImage(e){
+          const file = e.target.files[0];
+          if(file && file.size < 5*1024*1024){ // limit 5MB
+            this.messages.push({id:Date.now(), from:'traveler', text:'📷 Image uploaded: '+file.name, time:new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})});
+            // TODO: upload to server, send URL in message
+          } else {
+            alert("Image too large (max 5MB).");
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en" x-data="communityPage()">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TravelFree — Community</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --brand-primary: #9112BC;
+      --brand-soft:    #AE75DA;
+      --brand-cta:     #E9E294;
+      --page-bg:       #FFFCB8;
+      --text-dark:     #111827;
+    }
+    .card-shadow { box-shadow: 0 8px 18px rgba(17,24,39,0.06); }
+    .like-btn { cursor:pointer; }
+    .liked { color:#e0245e; } /* red heart when liked */
+  </style>
+</head>
+<body class="antialiased bg-[#FFFCB8] text-[#111827] font-inter">
+
+<!-- HEADER -->
+<header class="bg-white border-b">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center"
+           style="background:linear-gradient(135deg,#9112BC,#AE75DA); color:white; font-weight:700;">
+        TF
+      </div>
+      <span class="font-poppins text-lg text-[#9112BC]">TravelFree</span>
+    </div>
+    <!-- Nav (your 6 pages only) -->
+    <nav class="space-x-4 text-sm">
+      <a href="single-listing.html" class="hover:underline">Accommodation</a>
+      <a href="requests.html" class="hover:underline">Requests</a>
+      <a href="chat.html" class="hover:underline">Chat</a>
+      <a href="reviews.html" class="hover:underline">Reviews</a>
+      <a href="community.html" class="hover:underline">Community</a>
+      <a href="settings.html" class="hover:underline">Settings</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- Main -->
+  <main class="max-w-2xl mx-auto px-4 py-6 space-y-6">
+
+    <!-- Upload new photo -->
+    <section class="bg-white p-4 rounded-lg card-shadow">
+      <h2 class="font-poppins text-lg mb-3">Share your travel photo</h2>
+      <form @submit.prevent="addPost" class="space-y-3">
+        <input type="file" accept="image/*" @change="previewImage($event)" class="block text-sm"/>
+        <template x-if="newImageUrl">
+          <img :src="newImageUrl" alt="Preview" class="w-full h-64 object-cover rounded-md mt-2"/>
+        </template>
+        <textarea x-model="newCaption" rows="2" maxlength="200"
+          class="w-full border rounded-md p-2 text-sm focus:outline-none"
+          placeholder="Write a caption..."></textarea>
+        <div class="flex justify-end">
+          <button class="px-4 py-2 rounded-md bg-[#9112BC] text-white text-sm shadow-sm">
+            <i class="fa fa-upload mr-1"></i> Post
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Posts feed -->
+    <section class="space-y-6">
+      <template x-for="post in posts" :key="post.id">
+        <div class="bg-white rounded-lg card-shadow animate__animated animate__fadeIn">
+          <div class="flex items-center gap-3 p-3">
+            <img :src="post.avatar" alt="avatar" class="w-10 h-10 rounded-full object-cover border"/>
+            <div>
+              <p class="font-semibold text-sm" x-text="post.user"></p>
+              <p class="text-xs text-gray-500" x-text="post.date"></p>
+            </div>
+          </div>
+          <img :src="post.image" alt="post" class="w-full max-h-[420px] object-cover"/>
+          <div class="p-3 space-y-2">
+            <p class="text-sm" x-text="post.caption"></p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fa fa-heart like-btn"
+                 :class="post.liked ? 'liked' : 'text-gray-400'"
+                 @click="toggleLike(post)"></i>
+              <span x-text="post.likes + ' likes'"></span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <!-- FOOTER -->
+<footer class="bg-white border-t mt-12">
+  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600">
+    <p>&copy; 2025 TravelFree. All rights reserved.</p>
+    <div class="space-x-4 mt-2 md:mt-0">
+      <a href="https://facebook.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank" class="hover:text-[#9112BC]"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:info@travelfree.com" class="hover:text-[#9112BC]"><i class="fa fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </main>
+
+  <!-- Alpine.js logic -->
+  <script>
+    function communityPage(){
+      return {
+        newImageUrl: '',
+        newCaption: '',
+        posts: [
+          {id:1, user:'Ali Khan', avatar:'../assets/img/user1.jpg', image:'../assets/img/travel1.jpg', caption:'Beautiful sunset in Hunza valley 🌄', likes:12, liked:false, date:'2025-09-10'},
+          {id:2, user:'Fatima Noor', avatar:'../assets/img/user2.jpg', image:'../assets/img/travel2.jpg', caption:'Exploring the streets of Lahore 🕌', likes:8, liked:true, date:'2025-09-11'},
+          {id:3, user:'John Smith', avatar:'../assets/img/user3.jpg', image:'../assets/img/travel3.jpg', caption:'Camping under the stars ✨', likes:20, liked:false, date:'2025-09-09'}
+        ],
+        previewImage(e){
+          const file = e.target.files[0];
+          if(file){
+            this.newImageUrl = URL.createObjectURL(file);
+          }
+        },
+        addPost(){
+          if(!this.newImageUrl || this.newCaption.trim().length < 2){
+            alert("Add a photo and a short caption.");
+            return;
+          }
+          this.posts.unshift({
+            id: Date.now(),
+            user:"You",
+            avatar:"../assets/img/default_user.jpg",
+            image:this.newImageUrl,
+            caption:this.newCaption,
+            likes:0,
+            liked:false,
+            date:new Date().toISOString().split('T')[0]
+          });
+          this.newImageUrl = '';
+          this.newCaption = '';
+        },
+        toggleLike(post){
+          if(post.liked){ post.likes--; } else { post.likes++; }
+          post.liked = !post.liked;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
