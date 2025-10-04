@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TravelFree — Home</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --brand-primary: #9112BC;
+      --brand-soft:    #AE75DA;
+      --brand-cta:     #E9E294;
+      --page-bg:       #FFFCB8;
+      --text-dark:     #111827;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    .btn-primary {
+      background: var(--brand-primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: var(--brand-soft); }
+    .btn-cta {
+      background: var(--brand-cta);
+      color: var(--text-dark);
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#FFFCB8] text-[#111827]">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-poppins text-[#9112BC]">TravelFree</h1>
+      <nav class="space-x-6 hidden md:block">
+        <a href="index.html" class="hover:text-[#9112BC]">Home</a>
+        <a href="pages/single-listing.html" class="hover:text-[#9112BC]">Listings</a>
+        <a href="pages/requests.html" class="hover:text-[#9112BC]">Requests</a>
+        <a href="pages/chat.html" class="hover:text-[#9112BC]">Chat</a>
+        <a href="pages/reviews.html" class="hover:text-[#9112BC]">Reviews</a>
+        <a href="pages/community.html" class="hover:text-[#9112BC]">Community</a>
+        <a href="pages/settings.html" class="hover:text-[#9112BC]">Settings</a>
+      </nav>
+      <button class="btn-primary text-sm">Sign in</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-4xl font-poppins text-[#9112BC] mb-4">Stay. Share. Connect.</h2>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+      Welcome to Travelfree — a community of travelers and hosts who share unique stays, connect through experiences, and make travel meaningful.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="pages/single-listing.html" class="btn-primary"><i class="fa fa-search mr-2"></i> Browse Listings</a>
+      <a href="pages/community.html" class="btn-cta"><i class="fa fa-users mr-2"></i> Join Community</a>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="bg-white py-12">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+      <div class="p-6 rounded-lg shadow-md hover:shadow-lg">
+        <i class="fa fa-home text-3xl text-[#9112BC] mb-3"></i>
+        <h3 class="font-semibold text-lg mb-2">Find Stays</h3>
+        <p class="text-sm text-gray-600">Explore unique rooms, cozy apartments, and welcoming homes around the world.</p>
+      </div>
+      <div class="p-6 rounded-lg shadow-md hover:shadow-lg">
+        <i class="fa fa-comments text-3xl text-[#9112BC] mb-3"></i>
+        <h3 class="font-semibold text-lg mb-2">Chat & Connect</h3>
+        <p class="text-sm text-gray-600">Message with hosts and travelers once requests are approved.</p>
+      </div>
+      <div class="p-6 rounded-lg shadow-md hover:shadow-lg">
+        <i class="fa fa-star text-3xl text-[#9112BC] mb-3"></i>
+        <h3 class="font-semibold text-lg mb-2">Share Reviews</h3>
+        <p class="text-sm text-gray-600">Leave and read reviews to build trust and share honest experiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#9112BC] text-white py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p>&copy; 2025 TravelFree. All rights reserved.</p>
+      <p class="text-sm mt-1">Made with ❤️ for the traveler community.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
