@@ -31,24 +31,6 @@ This project was built as part of an internship task to practice **frontend web 
 
 ---
 
-## Folder Structure
-
-travelfree/
-│── index.html          # Landing/Home Page
-│
-├── assets/
-│   └── img/            # All images (rooms, profiles, community photos)
-│
-├── pages/
-│   ├── single-listing.html
-│   ├── requests.html
-│   ├── chat.html
-│   ├── reviews.html
-│   ├── community.html
-│   └── settings.html
-
----
-
 ## Live Demo
 
 Once deployed with GitHub Pages, the site will be available at:  
@@ -56,8 +38,9 @@ https://nayar-900.github.io/TravelFree-IP-Task-4/index.html
 
 ---
 
-## Screenshots (Optional)
+## Screenshots
 
+# Homepage
 <img width="1920" height="1198" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-index-html-2025-10-04-13_55_37" src="https://github.com/user-attachments/assets/798517db-a3fd-4316-9fa3-6915929fe365" />
 <img width="1920" height="1315" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-single-listing-html-2025-10-04-13_56_12" src="https://github.com/user-attachments/assets/e45e6e41-5c2d-4434-942a-25cbbef63e6a" />
 <img width="1920" height="1084" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-requests-html-2025-10-04-13_56_38" src="https://github.com/user-attachments/assets/6bc6d46c-bed8-415d-8dcf-b88d16d98b65" />
