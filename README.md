@@ -40,13 +40,19 @@ https://nayar-900.github.io/TravelFree-IP-Task-4/index.html
 
 ## Screenshots
 
-# Homepage
+**Homepage**
 <img width="1920" height="1198" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-index-html-2025-10-04-13_55_37" src="https://github.com/user-attachments/assets/798517db-a3fd-4316-9fa3-6915929fe365" />
+**accomodation**
 <img width="1920" height="1315" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-single-listing-html-2025-10-04-13_56_12" src="https://github.com/user-attachments/assets/e45e6e41-5c2d-4434-942a-25cbbef63e6a" />
+**Requests**
 <img width="1920" height="1084" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-requests-html-2025-10-04-13_56_38" src="https://github.com/user-attachments/assets/6bc6d46c-bed8-415d-8dcf-b88d16d98b65" />
+**Chats**
 <img width="1920" height="877" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-chat-html-2025-10-04-13_57_05" src="https://github.com/user-attachments/assets/cc1aa05c-cbaa-4aff-b8f9-c6ab2381d4be" />
+**Reviews**
 <img width="1920" height="1284" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-reviews-html-2025-10-04-13_57_27" src="https://github.com/user-attachments/assets/cb0558bc-5429-4d28-9025-d0105a1709a5" />
+**Community**
 <img width="1920" height="3261" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-community-html-2025-10-04-13_58_11" src="https://github.com/user-attachments/assets/71fb5cb9-25f6-46aa-b5d2-43c860f81917" />
+**Settings**
 <img width="1920" height="1717" alt="screencapture-nayar-900-github-io-TravelFree-IP-Task-4-pages-settings-html-2025-10-04-13_59_08" src="https://github.com/user-attachments/assets/0cda54b1-6f61-42b1-8370-190523f389a8" />
 
 ---
